@@ -31,6 +31,7 @@ namespace LibraryConfigurationTests
             var mockedCollection = GetMockedCorectLibraryElements();
             //Act
             var result = _libraryReader.ToList();
+            _libraryReader.Close();
             //Assert
             CollectionAssert.AreEqual(mockedCollection, result);
         }
