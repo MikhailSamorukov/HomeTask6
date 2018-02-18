@@ -8,10 +8,11 @@ using System.Xml;
 using System.Xml.Linq;
 using LibraryConfiguration.Models;
 using LibraryConfiguration.Attributes;
+using LibraryConfiguration.Interfaces;
 
 namespace LibraryConfiguration
 {
-    public class LibraryReader : IEnumerable<LibraryElement>
+    public class LibraryReader : ILibraryReader
     {
         private readonly XmlReader _reader;
         private readonly List<Type> _models;

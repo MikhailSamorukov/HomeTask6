@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using LibraryConfiguration;
 using LibraryConfiguration.Models;
+using LibraryConfiguration.Services;
 
 namespace HomeTask6
 {
@@ -11,14 +12,27 @@ namespace HomeTask6
         static void Main(string[] args)
         {
             #region Library reader
-            //LibraryReader lr = new LibraryReader(File.OpenRead($"{Directory.GetCurrentDirectory()}\\library.xml"));
-            //foreach (LibraryElement el in lr)
+            //LibraryReader lreader = new LibraryReader(File.OpenRead($"{Directory.GetCurrentDirectory()}\\library.xml"));
+            //LibraryLocator llocator = new LibraryLocator(lreader);
+            //foreach (LibraryElement el in lreader)
             //{
             //    Console.WriteLine(el.Name);
             //    Console.WriteLine(el.PagesCount);
             //    Console.WriteLine(el.Note);
             //};
-            //lr.Close();
+
+            //foreach (var book in llocator.Books)
+            //{
+            //    Console.WriteLine(book.Name);
+            //    Console.WriteLine(book.PagesCount);
+            //    Console.WriteLine(book.Note);
+            //    Console.WriteLine(book.InternationNumber);
+            //    Console.WriteLine(book.Autor);
+            //    Console.WriteLine(book.PublishingYear);
+            //}
+
+            //lreader.Close();
+
             #endregion
 
             #region Library writer
