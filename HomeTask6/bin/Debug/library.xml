@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<catalog UnLoadTime ="20.10.2018 12:12:12" Description="MyLibrary">
+  <Book>
+    <Name>Lord of the rings</Name>
+    <Autor>J. R. R. Tolkien</Autor>
+    <PublishingHouse>London</PublishingHouse>
+    <PublishingName>Allen and Unwin</PublishingName>
+    <PublishingYear>1954</PublishingYear>
+    <PagesCount>1589</PagesCount>
+    <Note>Cult book</Note>
+    <InternationNumber>0-395-08254-4</InternationNumber>
+  </Book>
+  <Newspaper>
+    <Name>The Wall Street Journal</Name>
+    <PublishingHouse>New York City</PublishingHouse>
+    <PublishingName>Dow Jones and Company</PublishingName>
+    <PublishingYear>2016</PublishingYear>
+    <PagesCount>100</PagesCount>
+    <Note>The Wall Street Journal is an American business-focused, English-language international daily newspaper based in New York City.</Note>
+    <Number>45</Number>
+    <Date>12.12.2016</Date>
+    <InternationNumber>0099-9660</InternationNumber>
+  </Newspaper>
+  <Book>
+    <Name>Harry potter and the Order of the Phoenix</Name>
+    <Autor>J. K. Rowling</Autor>
+    <PublishingHouse>London</PublishingHouse>
+    <PublishingName>Bloomsbury Publishing</PublishingName>
+    <PublishingYear>2017</PublishingYear>
+    <PagesCount>689</PagesCount>
+    <Note>fourth book in series</Note>
+    <InternationNumber>1-984-02336-1</InternationNumber>
+  </Book>
+  <Patent>
+    <Name>Bottle-Sealing Device</Name>
+    <Inventor>Crown Cork</Inventor>
+    <Country>USA</Country>
+    <RegisterNumber>468,226</RegisterNumber>
+    <ApplicationSubmissionDate>20.01.2000</ApplicationSubmissionDate>
+    <PublishDate>21.03.2001</PublishDate>
+    <PagesCount>1</PagesCount>
+    <Note>Before William Painter developed the Crown Cork, sodas and pop would lose their fizz pretty quickly</Note>
+  </Patent>
+  <Newspaper>
+    <Name>The New York Times</Name>
+    <PublishingHouse>New York City</PublishingHouse>
+    <PublishingName>A.G. Sulzberger</PublishingName>
+    <PublishingYear>2016</PublishingYear>
+    <PagesCount>90</PagesCount>
+    <Note>The New York Times is an American newspaper based in New York City with worldwide influence and readership.</Note>
+    <Number>10</Number>
+    <Date>10.10.2016</Date>
+    <InternationNumber>0362-4331</InternationNumber>
+  </Newspaper>
+  <Patent>
+    <Name>Social Game</Name>
+    <Inventor>Milton Bradley</Inventor>
+    <Country>USA</Country>
+    <RegisterNumber>53,561</RegisterNumber>
+    <ApplicationSubmissionDate>25.04.1990</ApplicationSubmissionDate>
+    <PublishDate>15.11.1991</PublishDate>
+    <PagesCount>3</PagesCount>
+    <Note>Milton Bradley and his patented board game idea have been saving the sheer awkwardness of family fun night for decades</Note>
+  </Patent>
+</catalog>

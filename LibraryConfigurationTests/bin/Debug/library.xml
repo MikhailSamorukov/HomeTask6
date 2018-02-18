@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<catalog UnLoadTime="18-02-2018 03:33:20" Description="MyLibrary">
+  <Book>
+    <Autor>J. R. R. Tolkien</Autor>
+    <PublishingHouse>London</PublishingHouse>
+    <PublishingName>Allen and Unwin</PublishingName>
+    <PublishingYear>1954</PublishingYear>
+    <InternationNumber>0-395-08254-4</InternationNumber>
+    <Name>Lord of the rings</Name>
+    <PagesCount>1589</PagesCount>
+    <Note>Cult book</Note>
+  </Book>
+  <Newspaper>
+    <PublishingHouse>New York City</PublishingHouse>
+    <PublishingName>Dow Jones and Company</PublishingName>
+    <PublishingYear>2016</PublishingYear>
+    <Number>45</Number>
+    <Date>2016-12-12T00:00:00</Date>
+    <InternationNumber>0099-9660</InternationNumber>
+    <Name>The Wall Street Journal</Name>
+    <PagesCount>100</PagesCount>
+    <Note>The Wall Street Journal is an American business-focused, English-language international daily newspaper based in New York City.</Note>
+  </Newspaper>
+</catalog>
