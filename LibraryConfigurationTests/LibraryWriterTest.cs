@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using LibraryConfiguration;
 using LibraryConfiguration.Models;
 using NUnit.Framework;
@@ -33,8 +34,8 @@ namespace LibraryConfigurationTests
             _libraryWriter.Write(GetMockedCorectLibraryElements(),"MyLibrary");
             _libraryWriter.Close();
 
-            var resultString = File.ReadAllText(_path);
-            var mockedString = GetMockedXmlString();
+            var resultString = Regex.Replace(File.ReadAllText(_path), @"\t|\n|\r", "");
+            var mockedString = Regex.Replace(GetMockedXmlString(), @"\t|\n|\r", "");
             //Assert
             Assert.AreEqual(resultString, mockedString);
         }
