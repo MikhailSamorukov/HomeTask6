@@ -12,9 +12,9 @@ namespace LibraryConfiguration
     public class LibraryWriter
     {
         private readonly XmlWriter _writer;
-        private readonly FileStream _stream;
+        private readonly Stream _stream;
 
-        public LibraryWriter(FileStream stream)
+        public LibraryWriter(Stream stream)
         {
             ValidateStream(stream);
             _stream = stream;
@@ -36,7 +36,11 @@ namespace LibraryConfiguration
                 {
 
                     var type = libraryElement.GetType();
-                    var element = new XElement(type.Name, GetSerializedProperies(libraryElement));
+                    var properties = GetSerializedProperies(libraryElement);
+
+                    if(properties == null) continue;
+
+                    var element = new XElement(type.Name, properties);
 
                     element.WriteTo(_writer);
                 }
@@ -58,13 +62,14 @@ namespace LibraryConfiguration
         {
             _writer.WriteStartDocument();
             _writer.WriteStartElement("catalog");
-            _writer.WriteAttributeString("UnLoadTime", DateTime.Now.ToString("dd-MM-yyyy hh:mm:ss"));
+            _writer.WriteAttributeString("UnLoadTime", DateTime.Now.ToString("dd-MM-yyyy"));
             _writer.WriteAttributeString("Description", libraryDescription);
         }
 
         private IEnumerable<XElement> GetSerializedProperies(LibraryElement libraryElement)
         {
-            ValidateProperties(libraryElement);
+            if (!ValidatePropertiesWithCallBack(libraryElement))
+                return null;
 
             return libraryElement
                     .GetType()
@@ -72,29 +77,44 @@ namespace LibraryConfiguration
                     .Select(property => new XElement(property.Name, property.GetValue(libraryElement)));
         }
 
-        private void ValidateProperties(LibraryElement libraryElement)
+        private bool ValidatePropertiesWithCallBack(LibraryElement libraryElement)
         {
             var isHasEmptyMandatoryProperty = libraryElement
                 .GetType()
                 .GetProperties()
                 .Any(property =>
                     property.CustomAttributes.Any(attribute => attribute.AttributeType == typeof(MandatoryAttribute))
-                    && property.GetValue(libraryElement) == null);
-
-            if (isHasEmptyMandatoryProperty)
+                    && IsTypeEqualDefault(property.GetValue(libraryElement), property.PropertyType));
+            try
             {
-                Close();
-                throw new NullReferenceException("Element can't be null");
+                if (isHasEmptyMandatoryProperty)
+                {
+                    throw new NullReferenceException("Element can't be null");
+                }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            return true;
         }
 
-        private void ValidateStream(FileStream stream)
+        private void ValidateStream(Stream stream)
         {
             if (stream == null)
                 throw new NullReferenceException("Stream Can't be null");
 
             if (!stream.CanWrite)
                 throw new Exception("Stream Can't write");
+        }
+
+        public bool IsTypeEqualDefault(object propertyValue, Type type)
+        {
+            if (type.IsValueType)
+                return Activator.CreateInstance(type).Equals(propertyValue);
+
+            return propertyValue == null;
         }
     }
 }

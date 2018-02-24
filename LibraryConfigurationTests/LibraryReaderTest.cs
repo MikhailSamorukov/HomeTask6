@@ -45,6 +45,16 @@ namespace LibraryConfigurationTests
             //Assert
             Assert.That(exception.Message, Is.EqualTo("Stream Can't read"));
         }
+        [Test]
+        [Category("Integrations")]
+        public void Read_should_throw_exception_cannot_read_start_element()
+        {
+            //Arrange
+            //Act
+            var exception = Assert.Throws<Exception>(() => new LibraryReader(new MemoryStream()));
+            //Assert
+            Assert.That(exception.Message, Is.EqualTo("Can't read startElement"));
+        }
         public List<LibraryElement> GetMockedCorectLibraryElements()
         {
             return new List<LibraryElement>()

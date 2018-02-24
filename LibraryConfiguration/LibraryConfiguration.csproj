@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="Attributes\Mandatory.cs" />
     <Compile Include="Attributes\Model.cs" />
-    <Compile Include="Interfaces\ILibraryReader.cs" />
     <Compile Include="LibraryReader.cs" />
     <Compile Include="LibraryValidator.cs" />
     <Compile Include="LibraryWriter.cs" />
@@ -51,7 +50,6 @@
     <Compile Include="Models\Newspaper.cs" />
     <Compile Include="Models\Patent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\LibraryLocator.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

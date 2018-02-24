@@ -8,24 +8,31 @@ using System.Xml;
 using System.Xml.Linq;
 using LibraryConfiguration.Models;
 using LibraryConfiguration.Attributes;
-using LibraryConfiguration.Interfaces;
+
 
 namespace LibraryConfiguration
 {
-    public class LibraryReader : ILibraryReader
+    public class LibraryReader : IEnumerable<LibraryElement>
     {
         private readonly XmlReader _reader;
         private readonly List<Type> _models;
-        private readonly FileStream _stream;
+        private readonly Stream _stream;
 
-        public LibraryReader(FileStream stream)
+        public LibraryReader(Stream stream)
         {
             ValidateStream(stream);
             _stream = stream;
             _reader = XmlReader.Create(stream, new LibraryValidator().Settings);
-            _reader.ReadStartElement();
-            _models = new List<Type>();
-            SetModels();
+            try
+            {
+                _reader.ReadStartElement();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Can't read startElement: {ex.Message}");
+                throw new Exception("Can't read startElement");
+            }
+            _models = SetModels().ToList();
         }
 
         public void Close()
@@ -66,7 +73,7 @@ namespace LibraryConfiguration
             return GetEnumerator();
         }
 
-        private void ValidateStream(FileStream stream)
+        private void ValidateStream(Stream stream)
         {
             if(stream == null)
                 throw new NullReferenceException("Stream Can't be null");
@@ -75,15 +82,14 @@ namespace LibraryConfiguration
                 throw new Exception("Stream Can't read");
         }
 
-        private void SetModels()
+        private IEnumerable<Type> SetModels()
         {
             var assembly = Assembly.GetExecutingAssembly();
-            _models.AddRange(
-                assembly
-                    .GetTypes()
-                    .Where(type => type.CustomAttributes
-                        .Any(attribute => attribute.AttributeType == typeof(ModelAttribute))
-                    ));
+            return assembly
+                .GetTypes()
+                .Where(type => type.CustomAttributes
+                    .Any(attribute => attribute.AttributeType == typeof(ModelAttribute))
+                );
         }
 
         private bool SetProperiesWithCallBack(LibraryElement resultObject, Type objectType, XContainer xElement)
