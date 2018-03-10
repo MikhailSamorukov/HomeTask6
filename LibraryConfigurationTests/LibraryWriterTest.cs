@@ -14,6 +14,7 @@ namespace LibraryConfigurationTests
     {
         private LibraryWriter _libraryWriter;
         private string _path;
+        private string _schemaPath;
 
         [SetUp]
         public void Init()
@@ -21,6 +22,7 @@ namespace LibraryConfigurationTests
             var dir = Path.GetDirectoryName(typeof(LibraryWriterTest).Assembly.Location);
             Environment.CurrentDirectory = dir ?? throw new InvalidOperationException("Directory can't be null");
             _path = $"{Directory.GetCurrentDirectory()}\\MyLibrary.xml";
+            _schemaPath = $"{Directory.GetCurrentDirectory()}\\library.xsd";
             FileStream fs = new FileStream(_path, FileMode.Create, FileAccess.Write);
             _libraryWriter = new LibraryWriter(fs);
         }
@@ -52,7 +54,7 @@ namespace LibraryConfigurationTests
             libraryWriter.Write(GetMockedUnCorectLibraryElements(), "BrokenLibrary");
             libraryWriter.Close();
             var streamRead = new FileStream(path, FileMode.Open, FileAccess.Read);
-            var libraryReader = new LibraryReader(streamRead);
+            var libraryReader = new LibraryReader(streamRead, _schemaPath);
             libraryReader.Close();
             //Assert
             Assert.That(!libraryReader.Any());

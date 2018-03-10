@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="catalog">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="Book">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Name" type="xs:string" />
+                <xs:element name="Autor" type="xs:string" />
+                <xs:element name="PublishingHouse" type="xs:string" />
+                <xs:element name="PublishingName" type="xs:string" />
+                <xs:element name="PublishingYear" type="xs:unsignedShort" />
+                <xs:element name="PagesCount" type="xs:unsignedShort" />
+                <xs:element name="Note" type="xs:string" />
+                <xs:element name="InternationNumber" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Newspaper">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Name" type="xs:string" />
+                <xs:element name="PublishingHouse" type="xs:string" />
+                <xs:element name="PublishingName" type="xs:string" />
+                <xs:element name="PublishingYear" type="xs:unsignedShort" />
+                <xs:element name="PagesCount" type="xs:unsignedByte" />
+                <xs:element name="Note" type="xs:string" />
+                <xs:element name="Number" type="xs:unsignedByte" />
+                <xs:element name="Date" type="xs:string" />
+                <xs:element name="InternationNumber" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Patent">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Name" type="xs:string" />
+                <xs:element name="Inventor" type="xs:string" />
+                <xs:element name="Country" type="xs:string" />
+                <xs:element name="RegisterNumber" type="xs:string" />
+                <xs:element name="ApplicationSubmissionDate" type="xs:string" />
+                <xs:element name="PublishDate" type="xs:string" />
+                <xs:element name="PagesCount" type="xs:unsignedByte" />
+                <xs:element name="Note" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="UnLoadTime" type="xs:string" use="required" />
+      <xs:attribute name="Description" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

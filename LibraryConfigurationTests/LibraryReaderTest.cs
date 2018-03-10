@@ -13,6 +13,7 @@ namespace LibraryConfigurationTests
     {
         private LibraryReader _libraryReader;
         private string _path;
+        private string _schemaPath;
 
         [SetUp]
         public void Init()
@@ -20,6 +21,7 @@ namespace LibraryConfigurationTests
             var dir = Path.GetDirectoryName(typeof(LibraryReaderTest).Assembly.Location);
             Environment.CurrentDirectory = dir ?? throw new InvalidOperationException("Directory can't be null");
             _path = $"{Directory.GetCurrentDirectory()}\\library.xml";
+            _schemaPath = $"{Directory.GetCurrentDirectory()}\\library.xsd";
         }
 
         [Test]
@@ -27,7 +29,7 @@ namespace LibraryConfigurationTests
         public void Read_should_be_equal_mocked_collection()
         {
             //Arrange
-            _libraryReader = new LibraryReader(File.OpenRead(_path));
+            _libraryReader = new LibraryReader(File.OpenRead(_path), _schemaPath);
             var mockedCollection = GetMockedCorectLibraryElements();
             //Act
             var result = _libraryReader.ToList();
@@ -41,7 +43,7 @@ namespace LibraryConfigurationTests
         {
             //Arrange
             //Act
-            var exception = Assert.Throws<Exception>(() => new LibraryReader(File.OpenWrite(_path)));
+            var exception = Assert.Throws<Exception>(() => new LibraryReader(File.OpenWrite(_path), _schemaPath));
             //Assert
             Assert.That(exception.Message, Is.EqualTo("Stream Can't read"));
         }
@@ -51,7 +53,7 @@ namespace LibraryConfigurationTests
         {
             //Arrange
             //Act
-            var exception = Assert.Throws<Exception>(() => new LibraryReader(new MemoryStream()));
+            var exception = Assert.Throws<Exception>(() => new LibraryReader(new MemoryStream(), _schemaPath));
             //Assert
             Assert.That(exception.Message, Is.EqualTo("Can't read startElement"));
         }

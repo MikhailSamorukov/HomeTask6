@@ -25,11 +25,10 @@ namespace LibraryConfiguration
 
         private void ValidationCallBack(object sender, ValidationEventArgs args)
         {
-            /*uncomment for shopw all warnings and errors*/
-            //if (args.Severity == XmlSeverityType.Warning)
-            //   Console.WriteLine("\tWarning: Matching schema not found.  No validation occurred." + args.Message);
-            //else
-            //Console.WriteLine("\tValidation error: " + args.Message);
+            if (args.Severity != XmlSeverityType.Warning)
+                Console.WriteLine("\tWarning: Matching schema not found.  No validation occurred." + args.Message);
+            else
+                Console.WriteLine("\tValidation error: " + args.Message);
         }
     }
 }

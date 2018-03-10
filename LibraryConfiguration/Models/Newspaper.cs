@@ -20,7 +20,12 @@ namespace LibraryConfiguration.Models
             if (!(obj is Newspaper newspaperObj))
                 return false;
 
-            return InternationNumber.Equals(newspaperObj.InternationNumber);
+            return InternationNumber == newspaperObj.InternationNumber
+                    && PublishingHouse == newspaperObj.PublishingHouse
+                    && PublishingName == newspaperObj.PublishingName
+                    && PublishingYear == newspaperObj.PublishingYear
+                    && Number == newspaperObj.Number
+                    && Date == newspaperObj.Date;
         }
     }
 }

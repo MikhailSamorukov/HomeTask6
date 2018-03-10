@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Schema;
 using LibraryConfiguration.Models;
 using LibraryConfiguration.Attributes;
 
@@ -18,11 +19,13 @@ namespace LibraryConfiguration
         private readonly List<Type> _models;
         private readonly Stream _stream;
 
-        public LibraryReader(Stream stream)
+        public LibraryReader(Stream stream, string schemaPath)
         {
+            var validator = new LibraryValidator();
             ValidateStream(stream);
             _stream = stream;
-            _reader = XmlReader.Create(stream, new LibraryValidator().Settings);
+            validator.Settings.Schemas.Add(string.Empty, schemaPath);
+            _reader = XmlReader.Create(stream, validator.Settings);
             try
             {
                 _reader.ReadStartElement();

@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<catalog UnLoadTime="18-02-2018 01:23:59" Description="TestWriter">
+<catalog UnLoadTime="10-03-2018" Description="TestWriter">
 	<Book>
 		<Autor>test</Autor>
 		<PublishingHouse>test</PublishingHouse>
 		<PublishingName>test</PublishingName>
-		<PublishingYear>2018</PublishingYear>
+		<PublishingYear>0</PublishingYear>
 		<InternationNumber>test</InternationNumber>
 		<Name>test</Name>
 		<PagesCount>500</PagesCount>

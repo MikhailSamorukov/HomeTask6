@@ -18,7 +18,11 @@ namespace LibraryConfiguration.Models
             if (!(obj is Book bookObj))
                 return false;
 
-                return InternationNumber.Equals(bookObj.InternationNumber);
+                return InternationNumber == bookObj.InternationNumber
+                        && Autor == bookObj.Autor
+                        && PublishingHouse == bookObj.PublishingHouse
+                        && PublishingName == bookObj.PublishingName
+                        && PublishingYear == bookObj.PublishingYear;
         }
     }
 }

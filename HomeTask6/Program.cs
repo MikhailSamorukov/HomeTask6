@@ -12,8 +12,7 @@ namespace HomeTask6
         static void Main(string[] args)
         {
             #region Library reader
-
-            //LibraryReader lreader = new LibraryReader(File.OpenRead($"{Directory.GetCurrentDirectory()}\\library.xml"));
+            //LibraryReader lreader = new LibraryReader(File.OpenRead($@"{Directory.GetCurrentDirectory()}\library.xml"), $@"{Directory.GetCurrentDirectory()}\library.xsd");
             //foreach (LibraryElement el in lreader)
             //{
             //    Console.WriteLine(el.Name);
@@ -21,7 +20,7 @@ namespace HomeTask6
             //    Console.WriteLine(el.Note);
             //}
 
-            //var books = lreader.Where(element => element.GetType() == typeof(Book)).Select(element => (Book) element);
+            //var books = lreader.Where(element => element.GetType() == typeof(Book)).Select(element => (Book)element);
             //foreach (var book in books)
             //{
             //    Console.WriteLine(book.Name);

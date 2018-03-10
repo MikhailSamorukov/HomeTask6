@@ -19,7 +19,11 @@ namespace LibraryConfiguration.Models
             if (!(obj is Patent newspaperObj))
                 return false;
 
-            return RegisterNumber.Equals(newspaperObj.RegisterNumber);
+            return RegisterNumber.Equals(newspaperObj.RegisterNumber)
+                   && Inventor == newspaperObj.Inventor
+                   && Country == newspaperObj.Country
+                   && ApplicationSubmissionDate == newspaperObj.ApplicationSubmissionDate
+                   && PublishDate == newspaperObj.ApplicationSubmissionDate;
         }
     }
 }
